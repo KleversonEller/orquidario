@@ -51,6 +51,7 @@
     "express-async-errors": "^3.1.1",
     "http-status-codes": "^2.2.0",
     "joi": "^17.7.0",
+    "joi-password-complexity": "^5.1.0",
     "jsonwebtoken": "^9.0.0",
     "tsc-init": "^2.1.0"
   }
