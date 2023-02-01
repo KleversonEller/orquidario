@@ -11,6 +11,12 @@ const controller = new UsersController(service)
 
 const userRouter = Router()
 
-userRouter.post('/newUser', async (req, res) => (controller.newUser(req, res)))
+userRouter.post('/newuser', async (req, res) => (controller.newUser(req, res)))
 
 userRouter.post('login', async (req, res) => (controller.login(req, res)))
+
+userRouter.put('/update/:id', async (req, res) => (controller.updateUser(req, res)))
+
+userRouter.delete('/delete/:id', async (req, res) => (controller.deleteUser(req, res)))
+
+export default userRouter

@@ -18,23 +18,30 @@ export default class UserModel {
         permission: data.permission
       }
     })
+    console.log(data)
     return user
   }
 
-  public async login (username: string): Promise<users> {
+  public async login (email: string): Promise<users> {
     const login = await this._connect.users.findUnique({
       where: {
-        username
+        email
       }
     })
     return login
   }
 
-  public async deleteUser (username: string) :Promise<void> {
+  public async updateUser (id: string, data: IUser): Promise<users> {
+    const update = await this._connect.users.update({
+      where: { id },
+      data
+    })
+    return update
+  }
+
+  public async deleteUser (id: string) :Promise<void> {
     await this._connect.users.delete({
-      where: {
-        username
-      }
+      where: { id }
     })
   }
 }

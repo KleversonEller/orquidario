@@ -1,5 +1,6 @@
 import validateUser from '@middleware/validateUserMiddleware'
 import UserModel from '@models/UserModel'
+import { users } from '@prisma/client'
 import Hash from '@utils/Hash'
 import PersonalError from '@utils/Personal.error'
 import Token from '@utils/Token'
@@ -29,10 +30,10 @@ export default class UserService {
 
   public async login (data: IUser): Promise<string> {
     validateUser.loginValidate(data)
-    const user = await this._model.login(data.username)
+    const user = await this._model.login(data.email)
 
     if (!user) {
-      throw new PersonalError(StatusCodes.BAD_REQUEST, 'Usuário não existe') // Error 400
+      throw new PersonalError(StatusCodes.BAD_REQUEST, 'E-mail não existe') // Error 400
     }
 
     const validPassword = await Hash.validateHash(data.password, user.password)
@@ -42,5 +43,15 @@ export default class UserService {
     }
 
     return Token.newToken({ id: user.id })
+  }
+
+  public async updateUser (id: string, data: IUser): Promise<users> {
+    const update = await this._model.updateUser(id, data)
+
+    return update
+  }
+
+  public async deleteUser (id: string): Promise<void> {
+    await this._model.deleteUser(id)
   }
 }

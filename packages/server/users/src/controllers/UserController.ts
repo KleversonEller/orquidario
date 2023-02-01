@@ -20,4 +20,16 @@ export class UsersController {
 
     return res.status(StatusCodes.OK).json({ token: result }) // Ok 200
   }
+
+  public async updateUser (req: Request, res: Response): Promise<Response> {
+    const result = await this._service.updateUser(req.params.id, req.body)
+
+    return res.status(StatusCodes.ACCEPTED).json({ message: result }) // Accepted 202
+  }
+
+  public async deleteUser (req: Request, res: Response): Promise<Response> {
+    await this._service.deleteUser(req.params.id)
+
+    return res.status(StatusCodes.OK).json({ Message: 'Usuário excluído com sucesso' }) // Ok 200
+  }
 }
