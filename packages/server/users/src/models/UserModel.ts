@@ -23,7 +23,7 @@ export default class UserModel {
   }
 
   public async login (email: string): Promise<users> {
-    const login = await this._connect.users.findUnique({
+    const login = await this._connect.users.findFirst({
       where: {
         email
       }

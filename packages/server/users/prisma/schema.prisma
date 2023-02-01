@@ -15,6 +15,6 @@ model users {
   username String @unique
   password String
   email String @unique
-  phone BigInt 
+  phone String 
   permission String @default("user")
 }

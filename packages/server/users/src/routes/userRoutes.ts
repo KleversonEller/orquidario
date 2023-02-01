@@ -13,7 +13,7 @@ const userRouter = Router()
 
 userRouter.post('/newuser', async (req, res) => (controller.newUser(req, res)))
 
-userRouter.post('login', async (req, res) => (controller.login(req, res)))
+userRouter.post('/login', async (req, res) => (controller.login(req, res)))
 
 userRouter.put('/update/:id', async (req, res) => (controller.updateUser(req, res)))
 

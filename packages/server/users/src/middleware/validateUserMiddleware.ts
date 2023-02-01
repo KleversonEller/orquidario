@@ -18,7 +18,10 @@ export default class validateUser {
       username: Joi.string().required().min(3),
       password: JoiPassword(passwordValid).required(),
       email: Joi.string().required().email(),
-      phone: Joi.number().max(11).min(9),
+      phone: Joi.string().min(10).max(11).messages({
+        'string.min': 'O número de telefone deve ser igual: (DDD) 00000-0000',
+        'string.max': 'O número de telefone deve ser igual: (DDD) 00000-0000'
+      }), // Error 405 (Method Not Allowed)
       permission: Joi.string().required()
     }).validate(data)
 
@@ -29,7 +32,7 @@ export default class validateUser {
 
   static loginValidate (data:IUser): void {
     const { error } = Joi.object({
-      username: Joi.string().required().min(3),
+      email: Joi.required(),
       password: JoiPassword(passwordValid).required()
     }).validate(data)
 

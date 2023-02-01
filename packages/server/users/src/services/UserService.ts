@@ -42,7 +42,9 @@ export default class UserService {
       throw new PersonalError(StatusCodes.BAD_REQUEST, 'Senha invalida') // Error 400
     }
 
-    return Token.newToken({ id: user.id })
+    const token = Token.newToken({ id: user.id })
+
+    return token
   }
 
   public async updateUser (id: string, data: IUser): Promise<users> {

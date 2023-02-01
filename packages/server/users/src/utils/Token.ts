@@ -32,7 +32,7 @@ export default class Token {
   static newToken (data: string | TokenPayload): string {
     const config: jwt.SignOptions = {
       algorithm: 'HS256',
-      experesIn: '1d'
+      expiresIn: '1d'
     }
 
     const token = jwt.sign({ data }, secret, config)
